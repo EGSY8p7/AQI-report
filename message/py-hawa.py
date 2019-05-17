@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
 
 import urllib.request
+
+import inline as inline
+import matplotlib
+import pandas as pd
+import matplotlib.pyplot as plt
+#%matplotlib inline
 import requests
-import json
 import sys
 import os
-import io
 import getopt
 
-
 def main(argv):
-
+    import json
     def usage():
         print(('usage: %s [-c city] [-a accesstoken] [-n notify] [-h help] ...' % argv[0]))
         return 100
@@ -29,7 +32,7 @@ def main(argv):
     city = 'astana'
     accesstoken = '153147500b88026a9bc053bdf5c2b382cb90e806'
     notify = 'False'
-    sendTrayNotification = True
+    sendTrayNotification = False
 
     for (k, v) in opts:
         if k == '-c':
@@ -48,15 +51,28 @@ def main(argv):
 
 
     url = 'http://api.waqi.info/feed/'+city+'/?token=' + accesstoken
-    print('URL: ',url)
+    #print('URL: ',url)
+
+    """data = {}
+    data['aqi'] = []
+    data['aqi'].append({
+        'city': city,
+        'accesstoken': accesstoken
+    })
+    with open('data1.txt', 'w') as outfile:
+        json.dump(data, outfile)"""
 
     r = requests.get(url, auth=('user', 'pass'))
 
     if r.status_code == 200:
+
         data = r.json()
         print(data)
+        with open('data2.json', 'w') as outfile:
+            json.dump(data, outfile)
         value = data['data']['iaqi']['pm25']['v']
         toDisplay = str(value)
+
 
         if value > 0 and value < 50:
             notify = 'notify-send "Air Quality Alert:" "Current Value: Healthy - "' + toDisplay
@@ -90,7 +106,6 @@ def main(argv):
         os.system(notify)
     else:
         print ('[Debug] Tray Notification is off.')
-
 
 if __name__ == '__main__':
     sys.exit(main(sys.argv))
