@@ -1,0 +1,31 @@
+{"status": "ok",
+  "data": {
+    "aqi": 25,
+    "idx": 10497,
+    "attributions": [{
+      "url": "http://worldweather.wmo.int",
+      "name": "World Meteorological Organization - surface synoptic observations (WMO-SYNOP)"},
+      {
+      "url": "https://kz.usembassy.gov/",
+      "name": "Astana Air Quality Monitor - US Embassy"},
+      {
+      "url": "https://waqi.info/",
+        "name": "World Air Quality Index Project"}],
+    "city": {
+      "geo": [51.125286, 71.46722],
+      "name": "Astana US Embassy, Kazakhstan",
+      "url": "https://aqicn.org/city/kazakhstan/astana/us-embassy"},
+    "dominentpol": "pm25",
+    "iaqi": {
+      "pm25": {"v": 25},
+      "w": {"v": 4.6},
+      "wg": {"v": 12.8}},
+    "time": {
+      "s": "2019-05-17 20:00:00",
+      "tz": "+06:00",
+      "v": 1558123200},
+    "debug": {
+      "sync": "2019-05-18T00:41:20+09:00"
+    }
+  }
+}
